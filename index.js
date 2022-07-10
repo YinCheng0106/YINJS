@@ -1,9 +1,16 @@
-const Discord = require('discord.js');
-const client = new Discord.Client(); 
-const setting = require('./auth.json');
+const { Client, Intents } = require('discord.js');
+const {TOKEN} = require('./auth.json');
 
-client.on('ready', () => {
-    console.log('>> 機器人已啟動 <<');
+const client = new Client({
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_VOICE_STATES
+    ]
 });
 
-client.login(setting.TOKEN)
+client.on('ready', () => {
+    console.log('>> 機器人已啟動 <<')
+});
+
+client.login(TOKEN)
